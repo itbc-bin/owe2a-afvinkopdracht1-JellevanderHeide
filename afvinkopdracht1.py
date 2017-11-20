@@ -1,6 +1,16 @@
 def main():
-    bestand = "enzymen.txt" 
-    headers, seq = lees_inhoud(bestand)
+    bestand = "enzymen.txt"
+    '''
+    omschrijving: stopt het programma als er te veel waarden zijn om te splitsen
+    verwacht resultaat: programma stopt wanneer er te veel waarden zijn
+    pass/fail: pass
+    opmerkingen: werkt prima, weet niet of het ook werkt met te weinig waarden
+    '''
+    try:
+        headers, seq = lees_inhoud(bestand) #voeg hier een waarde aan toe om te testen
+    except ValueError:
+        print(' je kan dit bestand niet opdelen op de manier die je aangegeven hebt')
+        errorJa()
     woord = input('welk woord zoek je?')                                    #vraag om een woord
     nummer = -1                                                             #zet nummer op -1                                               
     for i in headers:                                                       #loop door de sequentie
