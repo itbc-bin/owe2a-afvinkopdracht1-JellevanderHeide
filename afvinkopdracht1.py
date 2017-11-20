@@ -22,7 +22,7 @@ def lees_inhoud(bestand):                                       #DEZE FUNCTIE WE
     '''
     
     try:                                #probeer of dit werkt
-        bestand = open("alpaca.fa")
+        bestand = open("alpaca.fa")     #(alpaca.fa = [willekeurig] voor error)
     except FileNotFoundError:           #anders, doe dit...
         print('het bestand dat je hebt ingevuld bestaat niet in deze directory', '\n', '-'*70)
         errorJa()
@@ -39,7 +39,7 @@ def lees_inhoud(bestand):                                       #DEZE FUNCTIE WE
     opmerkingen: het bestand is een string, dus het programma stopt
     '''  
     try:
-        for line in stringTestobject.readlines():                            #loop door het bestand
+        for line in bestand.readlines():                            #loop door het bestand  (bestand = stringTestobject voor error)
             line = line.rstrip()
             if line[0] =='>':                                       #als er een > staat aan het begin van de line is het een header dus...
                 headers.append(line)                                #voeg de header toe aan de 'headers' lijst
@@ -92,7 +92,17 @@ def knipt(seq, seqNummer):                                                      
             print ('het enzym: ', enzym, ' met sequentie: ', fileSeq, ' knipt niet in de sequentie')
      
 def errorJa():
-    print ('er is een fout opgetreden, pas je code aan en run deze opnieuw. \n ----P R O G R A M  E N D E D---- ')
+    print ('\n\n er is een fout opgetreden, pas je code aan en run deze opnieuw. \n ----P R O G R A M  E N D E D---- ')
     exit()                                                                                         #stop het programma
+'''
+omschrijving: programma word onderbroken
+verwacht resultaat: programma stopt gelijk, niet zo zeer door een error op te vragen.
+pass/fail: pass
+opmerkingen: het is niet echt een exception, maar het lost wel de error op die je krijgt als je het programma onderbreekt
+'''
+try:
+    main()
+except:
+    print('\n\n je programma is onderbroken')
+    errorJa()
 
-main()
