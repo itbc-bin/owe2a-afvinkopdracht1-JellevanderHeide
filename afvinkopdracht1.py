@@ -9,7 +9,17 @@ def main():
             sequentieNummer = nummer                                        #sequentieNummer krijgt dezelfde waarde als nummer 
             jaNee, seqNummer = is_dna(seq, sequentieNummer, headers)        
             if jaNee == True:                                               #als jaNee waar is...
-                knipt(seq, seqNummer)                                       
+                '''
+                omschrijving:verkeerde parameters opgeven
+                verwacht resultaat: programma stopt als het programma de functie aanroept
+                pass/fail: pass
+                opmerkingen: het programma wordt netjes stopgezet
+                '''
+                try:
+                    knipt(seq, seqNummer)
+                except TypeError:
+                    print('\nje parameters kloppen niet')
+                    errorJa()
 
 
 def lees_inhoud(bestand):                                       #DEZE FUNCTIE WERKT CORRECT.
@@ -81,7 +91,7 @@ def is_dna(seq, sequentieNummer, headers):                                      
         print('dit is geen DNA')
         return False, sequentieNummer
 
-def knipt(seq, seqNummer):                                                                          #DEZE FUNCTIE WERKT CORRECT
+def knipt(seq, seqNummer):    #voer hier een extra niet bestaande parameter in voor test                                                                      #DEZE FUNCTIE WERKT CORRECT
     enzymenLijst = open('enzymen.txt')                                                                                                                            
     for line in enzymenLijst.readlines():                                                           #loop door de enzymenlijst
         enzym, fileSeq = line.split()                                                               #zet de enzymnaam en de bijhorende sequentie los van elkaar
@@ -90,19 +100,19 @@ def knipt(seq, seqNummer):                                                      
             print ('het enzym: ', enzym, ' met sequentie: ', fileSeq, ' knipt in de sequentie')     
         else:                                                                                       #anders
             print ('het enzym: ', enzym, ' met sequentie: ', fileSeq, ' knipt niet in de sequentie')
-     
+
 def errorJa():
     print ('\n\n er is een fout opgetreden, pas je code aan en run deze opnieuw. \n ----P R O G R A M  E N D E D---- ')
     exit()                                                                                         #stop het programma
 '''
-omschrijving: programma word onderbroken
-verwacht resultaat: programma stopt gelijk, niet zo zeer door een error op te vragen.
+omschrijving: programma wordt onderbroken
+verwacht resultaat: programma stopt gelijk, 
 pass/fail: pass
-opmerkingen: het is niet echt een exception, maar het lost wel de error op die je krijgt als je het programma onderbreekt
+opmerkingen: het programma stopt gelijk
 '''
 try:
     main()
-except:
+except KeyboardInterrupt:
     print('\n\n je programma is onderbroken')
     errorJa()
 
