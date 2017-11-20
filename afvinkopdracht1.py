@@ -13,24 +13,33 @@ def main():
 
 
 def lees_inhoud(bestand):                                       #DEZE FUNCTIE WERKT CORRECT.
+
     '''
     omschrijving: niet bestaand bestand openen
     verwacht resultaat: programma geeft een error als het bestand niet in de directory staat
     pass/fail: pass
     opmerkingen: het bestand bestaat niet, dus het programma stopt met uitvoeren
     '''
+    
     try:                                #probeer of dit werkt
-        bestand = open("alpaca.fucc")
+        bestand = open("alpaca.fa")
     except FileNotFoundError:           #anders, doe dit...
         print('het bestand dat je hebt ingevuld bestaat niet in deze directory', '\n', '-'*70)
         errorJa()
-        
+    stringTestobject = "woord"    
     headers = []
     seqs = []
     newLine = 0                                                 #newLine wordt gebruikt om te kijken of de sequentie is afgelopen bij het samenvoegen
     seqSamen = ''                                               #hier komt de samengestelde sequentie in te staan
+
+    '''
+    omschrijving: het bestand is een string?
+    verwacht resultaat: de error wordt netjes afgehandeld en het programma stopt
+    pass/fail: pass
+    opmerkingen: het bestand is een string, dus het programma stopt
+    '''  
     try:
-        for line in bestand.readlines():                            #loop door het bestand
+        for line in stringTestobject.readlines():                            #loop door het bestand
             line = line.rstrip()
             if line[0] =='>':                                       #als er een > staat aan het begin van de line is het een header dus...
                 headers.append(line)                                #voeg de header toe aan de 'headers' lijst
@@ -50,8 +59,8 @@ def lees_inhoud(bestand):                                       #DEZE FUNCTIE WE
 #    print(len(headers))
 #    print(len(seqs))
     except AttributeError:
-        print('dit object is een String en deze kan niet gebruikt worden door de Readlines \nfunctie')
-
+        print('dit object is een String en deze kan niet gebruikt worden door de Readlines \nfunctie','\n','-'*70)
+        errorJa()
     return headers, seqs
    
 def is_dna(seq, sequentieNummer, headers):                                                          #DEZE FUNCTIE WERKT CORRECT                                         
@@ -83,6 +92,7 @@ def knipt(seq, seqNummer):                                                      
             print ('het enzym: ', enzym, ' met sequentie: ', fileSeq, ' knipt niet in de sequentie')
      
 def errorJa():
-    print ('er is een fout opgetreden, los deze op en probeer het opnieuw')
+    print ('er is een fout opgetreden, pas je code aan en run deze opnieuw. \n ----P R O G R A M  E N D E D---- ')
     exit()                                                                                         #stop het programma
+
 main()
